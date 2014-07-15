@@ -119,9 +119,9 @@ public class Page {
     }
 
     /**
-     * add urls to fetch
-     *
+     * add requests to fetch
      * @param requests
+     * @param priority
      */
     public void addTargetRequests(List<String> requests, long priority) {
         synchronized (targetRequests) {
@@ -129,6 +129,7 @@ public class Page {
                 if (StringUtils.isBlank(s) || s.equals("#") || s.startsWith("javascript:")) {
                     break;
                 }
+
                 s = UrlUtils.canonicalizeUrl(s, url.toString());
                 targetRequests.add(new Request(s).setPriority(priority));
             }
@@ -170,6 +171,10 @@ public class Page {
         return url;
     }
 
+    /**
+     *
+     * @param url
+     */
     public void setUrl(Selectable url) {
         this.url = url;
     }
@@ -228,4 +233,5 @@ public class Page {
                 ", targetRequests=" + targetRequests +
                 '}';
     }
+    
 }

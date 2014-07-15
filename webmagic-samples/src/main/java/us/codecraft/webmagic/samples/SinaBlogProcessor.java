@@ -23,12 +23,12 @@ public class SinaBlogProcessor implements PageProcessor {
 
     @Override
     public void process(Page page) {
-        //列表页
         if (page.getUrl().regex(URL_LIST).match()) {
+            //列表页
             page.addTargetRequests(page.getHtml().xpath("//div[@class=\"articleList\"]").links().regex(URL_POST).all());
             page.addTargetRequests(page.getHtml().links().regex(URL_LIST).all());
-            //文章页
         } else {
+        //文章页
             page.putField("title", page.getHtml().xpath("//div[@class='articalTitle']/h2"));
             page.putField("content", page.getHtml().xpath("//div[@id='articlebody']//div[@class='articalContent']"));
             page.putField("date",

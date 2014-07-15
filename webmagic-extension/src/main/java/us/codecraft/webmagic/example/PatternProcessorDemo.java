@@ -51,6 +51,6 @@ public class PatternProcessorDemo {
 		processor.addHandler(handler);
 		pipeline.addHandler(handler);
 
-		Spider.create(processor).thread(5).addPipeline(pipeline).runAsync();
+		Spider.create(processor).addPipeline(pipeline).runAsync();
 	}
 }
